@@ -6,7 +6,11 @@ info:
 
 servers:
   - url: https://logdesempenhodevice-default-rtdb.firebaseio.com
-    description: Servidor Principal (Firebase)
+    description: Servidor de Dados
+    variables:
+      projeto:
+        default: "Logs Devices"
+        description: "Substitua pelo ID do projeto para testar"
 
 paths:
   /device_index.json:
