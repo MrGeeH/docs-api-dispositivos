@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: API de Gerenciamento de Devices - PACK TOOLS
+  description: Documentação para listagem e histórico de dispositivos via Firebase RTDB - PACK TOOLS.
+  version: 1.0.0
+
+servers:
+  - url: https://logdesempenhodevice-default-rtdb.firebaseio.com
+    description: Servidor Principal (Firebase)
+
+paths:
+  /device_index.json:
+    get:
+      summary: Lista todos os devices
+      description: Retorna o índice de dispositivos para obter os tokens de acesso.
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {"ID_DEVICE": "TOKEN_ACESSO"}
+
+  /status_por_token/{token}.json:
+    get:
+      summary: Filtra status de um device específico
+      parameters:
+        - name: token
+          in: path
+          required: true
+          description: O Token de acesso do device
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status retornado com sucesso
+
+  /historico_por_token/{token}.json:
+    get:
+      summary: Puxa o histórico completo do device
+      parameters:
+        - name: token
+          in: path
+          required: true
+          description: O Token de acesso do device para o histórico
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Histórico retornado
